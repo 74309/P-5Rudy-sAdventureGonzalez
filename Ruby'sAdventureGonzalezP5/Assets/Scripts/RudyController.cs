@@ -9,8 +9,8 @@ public class RudyController : MonoBehaviour
     public int maxHealth = 5;
     public float timeInvincible = 2.0f;
 
-    int currentHealth;
     public int health { get { return currentHealth; }}
+    int currentHealth;
 
     bool isInvincible;
     float invincibleTimer;
