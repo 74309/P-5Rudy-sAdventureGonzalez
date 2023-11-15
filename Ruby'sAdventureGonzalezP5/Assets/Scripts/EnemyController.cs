@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float speed = 3.0f;
+    public float speed;
     public bool vertical;
     public float changeTime = 3.0f;
 
@@ -12,30 +12,16 @@ public class EnemyController : MonoBehaviour
     float timer;
     int direction = 1;
 
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
+        animator = GetComponent<Animator>();
     }
 
-    void FixedUpdate()
-    {
-        Vector2 postion = rigidbody2D.position;
-
-        if (vertical)
-        {
-            postion.y = postion.y + Time.deltaTime * speed;
-        }
-        else
-        {
-            postion.x = postion.x + Time.deltaTime * speed;
-        }
-
-        rigidbody2D.MovePosition(postion);
-    }
-
-    // Update is called once per frame
     void Update()
     {
         timer -= Time.deltaTime;
@@ -46,13 +32,32 @@ public class EnemyController : MonoBehaviour
             timer = changeTime;
         }
     }
+
+    void FixedUpdate()
+    {
+        Vector2 postion = rigidbody2D.position;
+
+        if (vertical)
+        {
+            postion.y = postion.y + Time.deltaTime * speed * direction;
+            animator.SetFloat("Move X", direction);
+            animator.SetFloat("Move Y", 0);
+        }
+        else
+        {
+            postion.x = postion.x + Time.deltaTime * speed * direction;
+        }
+
+        rigidbody2D.MovePosition(postion);
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         RudyController player = other.gameObject.GetComponent<RudyController>();
 
         if (player != null)
         {
-            player.ChangeHealth(direction - 1);
+            player.ChangeHealth(-1);
         }
     }
 }
