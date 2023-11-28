@@ -198,7 +198,7 @@ MonoBehaviour:
   speed: 3
   vertical: 1
   changeTime: 3
-  smokeEffect: {fileID: 8128591132268501975, guid: 38b4d02db65d87c43b054712f085b345, type: 3}
+  smokeEffect: {fileID: 2651026478623487291}
 --- !u!82 &8074381731569730395
 AudioSource:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -352,6 +352,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38b4d02db65d87c43b054712f085b345, type: 3}
+--- !u!198 &2651026478623487291 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8128591132268501975, guid: 38b4d02db65d87c43b054712f085b345, type: 3}
+  m_PrefabInstance: {fileID: 6054201396947906284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3895892364207683111 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7067314873050437835, guid: 38b4d02db65d87c43b054712f085b345, type: 3}

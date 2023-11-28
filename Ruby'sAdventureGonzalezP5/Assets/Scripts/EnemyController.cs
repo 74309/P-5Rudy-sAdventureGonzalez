@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        //remember ! inverse the test, so if broken is true !broken will be false and return won’t be executed.
         if (!broken)
         {
             return;
@@ -43,27 +44,28 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        //remember ! inverse the test, so if broken is true !broken will be false and return won’t be executed.
         if (!broken)
         {
             return;
         }
 
-        Vector2 postion = rigidbody2D.position;
+        Vector2 position = rigidbody2D.position;
 
         if (vertical)
         {
-            postion.y = postion.y + Time.deltaTime * speed * direction;
+            position.y = position.y + Time.deltaTime * speed * direction;
             animator.SetFloat("Move X", 0);
             animator.SetFloat("Move Y", direction);
         }
         else
         {
-            postion.x = postion.x + Time.deltaTime * speed * direction;
+            position.x = position.x + Time.deltaTime * speed * direction;
             animator.SetFloat("Move X", direction);
             animator.SetFloat("Move Y", 0);
         }
 
-        rigidbody2D.MovePosition(postion);
+        rigidbody2D.MovePosition(position);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -76,12 +78,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //Public because we want to call it from elsewhere like the projectile script
     public void Fix()
     {
         broken = false;
         rigidbody2D.simulated = false;
+        //optional if you added the fixed animation
         animator.SetTrigger("Fixed");
 
         smokeEffect.Stop();
+        Destroy(smokeEffect.gameObject);
     }
 }
